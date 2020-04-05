@@ -1,0 +1,44 @@
+{% extends "admin_panel/base_app.html" %}
+
+{% block title %}
+Main page - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<div class="container col-10">
+		<h1 class="mt-3 mb-5">Admin Panel <span class="badge badge-secondary">Товары</span></h1>
+
+			{% include 'includes/nav_bar.html' %}
+			<br/>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">Название товара</th>
+						<th scope="col">Цена товара</th>
+						<th scope="col">Статус товара</th>
+						<th scope="col">Категория товара</th>
+						<th scope="col">Дата публикации</th>
+						<th scope="col">Изменение</th>
+					</tr>
+				</thead>
+				<tbody>
+					<a href="{% url 'create_page' %}"><i class="fas fa-plus"></i></a>
+					{% for i in products %}
+						<tr>
+							<td>{{ i.title }}</td>
+							<td>{{ i.price }}</td>
+							<td>{{ i.status }}</td>
+							<td>{% if i.category == 1%} Камера {% else %} Экш-камера {% endif %}</td>
+							<td>{{ i.date_public }}</td>
+							<td>
+								<a href="{% url 'edit_page' id=i.id %}"><i class="fas fa-edit mr-3"></i></a>
+								<a href="{% url 'delete_page' id=i.id %}"><i class="fas fa-trash mr-3"></i></a>
+								<a href="{% url 'read_page' id=i.id %}"><i class="fas fa-book mr-3"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+	</div>
+{% endblock %}

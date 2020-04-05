@@ -1,0 +1,60 @@
+{% extends 'items/base_app.html' %}
+
+{% block title %}
+	Profile "{{ request.user.username|title }}" - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<div class="container col-10">
+		<img class="gravatar__image mt-3 mb-3" src="https://www.gravatar.com/avatar/{{ email }}?d=identicon&s=256" alt="">
+		<br/>
+
+		<b>Имя пользователя: </b><span>{{ request.user.username }}</span><br/>
+		<b>Почта: </b><span>{{ request.user.email }}</span><br/>
+		<b>Имя: </b><span>{{ request.user.first_name }}</span><br/>
+		<b>Фамилия: </b><span>{{ request.user.last_name }}</span><br/>
+		<br/>
+		<button type='submit' class="btn btn-warning" data-toggle="modal" data-target="#exampleModalScrollable"><i class="fas fa-id-card-alt"></i> Редактировать профиль</button>
+
+		{% include 'include/user_profile_change.html' %}
+
+	</div>
+
+	<br/>
+	<div class="container col-10">
+		<hr>
+		<h2 class="main__text">Ваши коментарии</h2>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Товар</th>
+					<th scope="col">Преимущества</th>
+					<th scope="col">Недостатки</th>
+					<th scope="col">Комментарий</th>
+					<th scope="col">Изменение</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in comments %}
+					<tr>
+						{% for pr in i.products.all %}
+							<th scope="row"><p><b>Товар: </b><a href="{% url 'product_detail_page' id=pr.id %}">{{ pr }}</a></p></th>
+						{% endfor %}
+						<td>{{ i.adv|truncatechars:20 }}</td>
+						<td>{{ i.dis_adv|truncatechars:20 }}</td>
+						<td>{{ i.comment|truncatechars:20 }}</td>
+						<td>
+							<a href="{% url 'edit_comment' id=i.id %}"><i class="fas fa-edit mr-3"></i></a>
+							<a href="{% url 'delete_comment_page' id=i.id %}"><i class="fas fa-trash mr-3"></i></a>
+						</td>
+					</tr>
+				{% empty %}
+					<h4>Нет комментариев</h4>
+				{% endfor %}
+			</tbody>
+		</table>	
+		<hr>
+	</div>
+	<br/><br/>
+	{% include 'include/footer.html' %}
+{% endblock %}

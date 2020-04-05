@@ -1,0 +1,84 @@
+{% extends 'items/base_app.html' %}
+
+{% block title %}
+	Product - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+		<div class="container col-11">
+			<h1 class="mt-4 mb-4">{{ product.title }}</h1>
+			<hr>
+			<div class="block__detail">
+
+				{% if product.picture %}
+					<img src="{{ product.picture.url }}" alt="Picture">
+				{% endif %}
+
+				<div class="block__price">
+					<small class="good__price">Отличная цена</small><br/>
+					{% if product.status == 'цена' %}
+						<span class='strikethrough'>{{ product.price }}</span>
+					{% endif %}
+					<h3 id="price">{{ product.set_price }} <i class="fas fa-ruble-sign"></i></h3>
+					<span><i class="fas fa-location-arrow"></i> самовывоз сегодня</span><br/>
+					<span><i class="fas fa-truck"></i> доставим курьером сегодня</span>
+					<br/><hr>
+					<span><i class="fas fa-coins"></i> Оплата наличными курьеру</span><br/><br/>
+					
+					{% if request.user.is_authenticated %}
+						{% if product.id in products_in_basket %}
+							<span style='color: green;'><i class="fas fa-check-square"></i> Добавлено в корзину</span>
+						{% else %}
+							<a class='btn btn-outline-warning' id="button" href="{% url 'add_to_basket' id=product.id %}">Добавить в корзину</a>
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+			
+			<h2 class="main__text mt-5">Все характеристики товара</h2>
+		</div>
+
+		<div class="cotainer col-11">
+			
+			<div class="block__params">
+				{% for param in product.get_full_desc %}
+					<span id="params">{{ param }}</span><br/>
+				{% endfor %}
+			</div>
+		</div>
+		
+
+		<hr><br/>
+		<div class="about__product">
+			<h2 style="color: black;">Все отзывы</h2>
+
+			{% if request.user.is_authenticated %}
+				<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalScrollable">Написать отзыв</button>
+
+				{% include 'include/create_comment.html' %}
+			{% endif %}
+		</div>
+		<div class="container col-9">
+			<hr>
+			{% for i in product.comments.all %}
+				<div class="comments__block">
+					<span id="logo__user"><i class="fas fa-user-tie"></i> {{ i.user|title }}</span><br/>
+					<br/>
+					<b>Достоинства</b>
+					<p>{{ i.adv }}</p>
+
+					<b>Недостатки</b>
+					<p>{{ i.dis_adv }}</p>
+
+					<b>Комментарий</b>
+					<p>{{ i.comment }}</p>
+				</div>
+				<hr>	
+			{% endfor %}
+		</div>
+
+
+
+		<br/>
+		{% include 'include/footer.html' %}
+{% endblock %}

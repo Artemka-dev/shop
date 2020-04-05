@@ -1,0 +1,93 @@
+{% extends 'items/base_app.html' %}
+
+{% block title %}
+	Категория {% if cat == 1 %} "Камеры" {% else %} "Экшн-Камеры" {% endif %} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+	{% load static %}
+	{% load bootstrap %}
+	{% load crispy_forms_tags %}
+
+	{% include "include/kategories.html" %}
+	<hr>
+
+	<div class="container col-2 mt-5 mb-5">
+		<h1 style='font-weight: 700;'>Камеры</h1>
+	</div>
+	
+	<!-- <div class="block__category__products">
+		<div class="block__all_products"> -->
+	
+	
+	<div class="main_block" style="width: 100%; display: flex; flex-direction: row; justify-content:space-between;">
+		<div style="height: auto; width: 65%;">
+			{% for i in filter.qs %}
+				<div class="block__product_item">
+					<div class="block__main">
+						<img src="{{ i.picture.url }}" alt="" width="258px" height='auto'>
+
+						<div class="container col-5">
+							<div class="block__into" style="width: 150px;">
+								
+								<span>{{ i.get_max_videoformat }}</span><br/>
+								<small>{% if i.status == 'цена' %} {{ i.set_price }} {% else %} {{ i.price }} {% endif %}<i class="fas fa-ruble-sign"></i></small>
+								
+							</div>
+						</div>
+						<br/><br/>
+
+						<h5>{{ i.title }}</h5>
+						{% if i.status == 'цена' %}
+							<h6><span class='strikethrough' style='font-style: italic; color: red; font-size: 15px;'>{{ i.price }} <i class="fas fa-ruble-sign"></i></span></h6>
+							<h4><span>{{ i.set_price }} <i class="fas fa-ruble-sign"></i></span></h4>
+						{% else %}
+							<h6><span style='font-size: 15px; font-style: italic; color: red;'>Хит сезона</span></h6>
+							<h4><span>{{ i.price }} <i class="fas fa-ruble-sign"></i></span></h4>
+						{% endif %}
+						<hr>
+
+					</div>
+
+					<div class="block__footer">
+						<div class="container col-6"><h6 style='font-weight: 700;'>Основные параметры</h6></div>
+						{% for d in i.get_description %}
+							<ul>
+								<li type='disc'>{{ d }}</li>
+							</ul>
+						{% endfor %}
+
+						<a class='btn btn-primary' href="{% url 'product_detail_page' id=i.id %}">Подробнее</a>
+						{% if request.user.is_authenticated %}
+							{% if i.id in products_in_basket %}
+								<span style='color: green;'><i class="fas fa-check-square"></i> Добавлено в корзину</span>
+							{% else %}
+								<a class='btn btn-primary' href="{% url 'add_to_basket' id=i.id %}">Добавить в корзину</a>
+							{% endif %}
+						{% endif %}
+					</div>
+				</div>
+			{% empty %}
+				<div class="container col-8"><h5 style="font-weight: 800; font-style: italic; color: red;">Товаров не обнаружено!</h5></div>
+				<br/>
+				<div class="container col-4"><img width="350px" height="auto" src="{% static 'images/sorry_picture.png' %}" alt=""></div><br/>
+			{% endfor %}
+		</div>
+
+		<div class="filter__products" style="width: 25%; height: 600px;">
+		
+			<div class="container col-6"><h6 style="font-weight: 800;font-size: 20px; margin-bottom: 20px;">Фильтры</h6></div>
+			<form method="GET">
+				{{ filter.form|bootstrap }}
+				<button class='btn btn-warning' id="button">Применить фильтры</button>
+			</form>
+			<a href="{% url 'category_page' cat=cat %}">Отменить фильтрацию</a>
+		</div>
+	
+	</div>
+
+	<br/>
+	{% include "include/footer.html" %}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "admin_panel/base_app.html" %}
+
+{% block title %}
+	Check Users Admin - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	{% load static %}
+	<div class="container col-10">
+		<h1 class="mt-3 mb-5">Admin Panel <span class="badge badge-secondary">Пользователи</span></h1>
+
+	{% include 'includes/nav_bar.html' %}
+	<br/>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Ник пользователя</th>
+					<th scope="col">Почта</th>
+					<th scope="col">Имя</th>
+					<th scope="col">Фамилия</th>
+					<th scope="col">Суперпользователь</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.username }}</td>
+						<td>{{ user.email }}</td>
+						<td>{{ user.first_name }}</td>
+						<td>{{ user.last_name }}</td>
+						<td>{% if user.is_superuser %} <img src="{% static 'images/is_superuser.png' %}" alt="" width="20px" height="auto"> {% else %} <img src="{% static 'images/is_notsuperuser.png' %}" alt="" width="20px" height="auto"> {% endif %}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

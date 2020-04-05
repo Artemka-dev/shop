@@ -1,0 +1,27 @@
+{% extends 'admin_panel/base_app.html' %}
+
+{% block title %}
+	Create Product - {{ block.super }}
+{% endblock %}
+
+{% load crispy_forms_tags %}
+{% load bootstrap %}
+
+{% block content %}
+
+	<div class="container-fluid col-5 mt-5">
+		<!-- <div class="row">
+			<div class="registration__block"> -->
+				<h2 class="mb-3">Добавить Товар</h2>
+				<form action="{% url 'create_page' %}" method="post" enctype="multipart/form-data">
+
+					{% csrf_token %}
+
+					{{ form|bootstrap }}
+
+					<button type="submit" class="btn btn-warning">Добавить</button>		
+				</form>
+			<!-- </div>
+		</div> -->
+	</div>
+{% endblock %}

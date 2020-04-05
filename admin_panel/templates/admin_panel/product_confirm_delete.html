@@ -1,0 +1,16 @@
+{% extends "admin_panel/base_app.html" %}
+
+{% block title %}
+    Delete Product
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <form method="post">
+            {% csrf_token %} 
+            <span style="font-size: 22px;">Ты точно хочешь удалить - "{{ object }}"?</span> 
+            <br/>
+            <button type="submit" class="btn btn-outline-success">Удалить этот товар</button>
+        </form>
+    </div>
+{% endblock %} 

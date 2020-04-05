@@ -1,0 +1,38 @@
+{% extends 'authsys/base_app.html' %}
+
+{% block title %}
+	Login Page - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid col-5 mt-5">
+		<div class="row">
+			<div class="registration__block">
+				<h2 class="mb-3">Вход на сайт</h2>
+				<form action="{% url 'login_page' %}" method="post">
+					
+					{% csrf_token %}
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Имя пользователя</label>
+						<input type="text" class="form-control" placeholder="Введите имя пользователя" name="username">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Пароль</label>
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль" name="passw">
+					</div>
+					
+					<small id="emailHelp" class="form-text text-muted">{{ errors }}</small>
+
+					<button type="submit" class="btn btn-primary">Войти</button>
+
+					<div id="block__after"></div>
+					<h4 id="signIn__after">Еще нет аккаунта???</h4>
+					<h6><a href="{% url 'create_account_page' %}" class="enter__account">Зарегестрироваться</a></h6>
+
+					<h6><a href="{% url 'password_reset' %}" class="enter__account">Забыли пароль?</a></h6>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

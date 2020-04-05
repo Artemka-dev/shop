@@ -1,0 +1,263 @@
+body {
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	line-height: 1.6;
+	color: #333;
+	/*background-color: #333;*/
+
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+#block__after {
+	border: 1px solid orange;
+	border-radius: 50px;
+	width: 100%;
+	height: 2px;
+	margin-top: 20px;
+	background-color: orange;
+}
+
+#signIn__after {
+	margin-top: 10px;
+	color: lightblack;
+}
+
+/*main block*/
+.registration__block {
+	border: 2px solid silver;
+	padding: 50px;
+	border-radius: 20px;
+	margin-bottom: 10px;
+	width: 600px;
+	background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+}
+
+.enter__account {
+	font-size: 17px;
+}
+
+.createAccount__page {
+	background-color: radial-gradient(40% 50%, #FAECD5, #CAE4D8);
+}
+
+
+.block__between {
+	border: 1px solid white;
+}
+
+.main__text {
+	font-family: "Comic Sans MS", sans-serif;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.block__info {
+	border: 2px solid #D3D3D3;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 3px 4px 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+
+
+.strikethrough {
+  position: relative;
+}
+.strikethrough:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  right: 0;
+  border-top: 1px solid;
+  border-color: inherit;
+
+  transform:rotate(-5deg);
+}
+
+#jumb__block {
+	text-align: center;
+	/*background: url("../images/photo.jpg") center no-repeat;*/
+	background: radial-gradient(40% 50%, #FAECD5, #CAE4D8);
+}
+
+
+
+/*категории*/
+
+.pic1 {
+    color: white;
+
+    padding-top: 10px;
+    width: 480px;
+    height: 300px;
+    border-radius: 9px;
+    background-size: 480px 300px;
+    background-image: url("../images/kamera.jpg");
+    margin: 5px;
+}
+
+.pic1:hover {
+    opacity: 0.85;
+    text-decoration: None;
+}
+
+.pic2 {
+    color: white;
+
+    padding: 10px;
+    width: 500px;
+    height: 300px;
+    border-radius: 9px;
+    background-size: 500px 300px;
+    background-image: url("../images/kamera2.jpg");
+    margin: 5px;
+}
+
+.pic2:hover {
+    opacity: 0.85;
+}
+
+.block__kategories {
+	display: flex;
+	margin-bottom: 50px;
+	justify-content: space-around;
+}
+
+.block__kat__link {
+	font-size: 30px;
+	font-weight: 900;
+	color: #FDF5E6;
+}
+
+
+.footer {
+    position: relative;
+    left: 0; bottom: 0; 
+    color: #fff; 
+    background-color: #333;
+    width: 100%; 
+}
+
+/*detail*/
+.price {
+	color: orange;
+}
+
+.block__detail {
+	display: flex;
+	justify-content: space-around;
+}
+
+.block__price {
+	padding: 20px;
+	width: 300px;
+	border-radius: 20px;
+
+	box-shadow: 3px 4px 10px rgba(0,0,0,0.3); /* Параметры тени */
+}
+
+.good__price {
+	color: silver;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#price {
+	color: black;
+	font-size: 22px;
+}
+
+#button {
+	width: 100%;
+}
+
+.block__params {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+#params {
+	color: black;
+	margin-left: 50px;
+	font-size: 17px;
+}
+
+.about__product {
+	display: flex;
+	justify-content: space-around;
+
+}
+
+#logo__user {
+	font-size: 20px;
+}
+
+.gravatar__image {
+	border: 1px solid silver;
+	border-radius: 20px;
+}
+
+
+.block__product_item {
+	display: inline-block;
+	width: 500px;
+	height: auto;
+	border: 1px solid #dadada;
+	margin-left: 10px;
+	margin-bottom: 25px;
+	border-radius: 10px;
+	
+	padding: 10px;
+	word-spacing: 2px;
+}
+
+.block__main {
+	text-align: center;
+}
+
+.block__into {
+	border: 1px solid #000000;
+	border-radius: 5px;
+	width: 100px;
+	padding: 4px;
+
+}
+
+.block__footer {
+	margin-left: 13px;
+}
+
+#search__block {
+	margin-top: 40px; 
+	border: 1px solid #dadada;
+	padding: 15px;
+	border-radius: 20px;
+}
+
+#search__product {
+	width: 320px;
+}
+
+.block__all_products {
+	width: 75%;
+}
+
+.filter__products {
+	width: 25%;
+	height: 50%;
+	border: 1px solid #dadada;
+	padding: 20px;
+	margin-right: 50px;
+}
+
+.block__category__products {
+	display: flex;
+	justify-content: space-around;
+}

@@ -1,0 +1,31 @@
+{% extends 'items/base_app.html' %}
+
+{% block title %}
+	Корзина товаров
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <h1 class="ml-5" style="font-weight: 800; font-size: 50px;">Ваша корзина:</h1><hr/>
+	{% for b in goods %}
+
+		<div class="container-fluid col-7" style="margin-top: 40px;">
+            <div class="media">
+            	{% if b.picture.url %}
+					<img src="{{ b.picture.url }}" class="mr-3" alt="..." width="210px" height='auto'>
+				{% endif %}
+                <div class="media-body">
+                    <h5 class="mt-0"><a href="{% url 'product_detail_page' id=b.id %}">{{ b.title }}</a></h5>
+                    <h5 class="mt-0" style="color: #ff8d02;"><b>{% if b.status == 'цена' %} {{ b.set_price }} {% else %} {{ b.price }} {% endif %} <i class="fas fa-ruble-sign"></i></b></h5>
+                    <p class="card-text">
+                        <small>{{ b.desc|truncatewords:25 }}</small>
+                    </p>
+                    <a class='btn btn-primary' href="{% url 'delete_from_basket' id=b.id %}">Удалить из корзины</a>
+                </div>
+            </div>
+            <hr />
+        </div>
+    {% empty %}
+            <div class="container col-4"><img width="450px" height="auto" src="{% static 'images/sorry_picture.png' %}" alt=""></div>
+	{% endfor %}
+{% endblock %}

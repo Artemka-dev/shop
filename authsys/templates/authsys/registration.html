@@ -1,0 +1,27 @@
+{% extends 'authsys/base_app.html' %}
+
+{% block title %}
+	Registration Page - {{ block.super }}
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="container-fluid col-5 mt-5">
+		<div class="row">
+			<div class="registration__block">
+				<h2 class="mb-3">Регистрация на сайте</h2>
+				<form action='{% url "create_account_page" %}' method="post">
+					{% csrf_token %}
+
+					{{ form|crispy }}
+
+					<button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+				</form>
+				<div id="block__after"></div>
+				<h4 id="signIn__after">Уже есть аккаунт???</h4>
+				<h6><a href="{% url 'login_page' %}" class="enter__account">Войти</a></h6>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<div class="card" style="border: none; width: 15rem; display: inline-block; margin-left: 70px; margin-bottom: 40px; margin-right: 40px;">
+	{% if product.picture %}
+	<img class="card-img-top" src="{{ product.picture.url }}">
+	{% endif %}
+	<div class="card-body">
+		<h5 class="card-title">{{ product.title }}</h5>
+		{% if product.status == 'цена' %} <span class="strikethrough">{{ product.price }}</span> {% endif %}
+		<p class="card-text" style="color: #ff8d02;"><big><b>{% if product.status == 'цена' %} {{ product.set_price }} {% else %} {{ product.price }} {% endif %} рублей</b></big></p>
+		<p class="card-text">
+			<small>{{ product.desc|truncatechars:100 }}</small>
+		</p>
+		<a href="{% url 'product_detail_page' id=product.id %}">Подробнее...</a>
+	</div>
+</div>

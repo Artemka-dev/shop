@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<a class="nav-link {% if active == 'admin_main' %} active {% endif %}" href="{% url 'admin_page' %}">Товары</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link {% if active == 'users' %} active {% endif %}" href="{% url 'check_users' %}">Пользователи</a>
+	</li>
+</ul>

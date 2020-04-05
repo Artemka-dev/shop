@@ -1,0 +1,11 @@
+{% extends 'items/base_app.html' %}
+
+{% block title %}
+	Error page "{{ page }}" - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<div class="container col-12 mt-5">
+		<p style='font-size: 30px; font-weight: 900; color: red;'>Чтобы попасть на страницу {{ page }} вам необходимо создать аккаунт или войти - <a href="{% url 'login_page' %}">Войти</a></p>
+	</div>
+{% endblock %}

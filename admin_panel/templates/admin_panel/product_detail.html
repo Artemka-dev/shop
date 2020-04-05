@@ -1,0 +1,26 @@
+{% extends 'admin_panel/base_app.html' %}
+
+{% block title %}
+	Info "{{ object.title }}"
+{% endblock %}
+
+{% block content %}
+	<div class="container col-6 mt-5 mb-5">
+		<div class="block__info">
+			<h5>Информация о продукте</h5>
+			<hr>
+			<b>Название товара</b>
+			<p>{{ object.title }}</p>
+			<b>Описвание товара</b>
+			<p>{{ object.desc }}</p>
+			<b>Цена товара</b>
+			<p>{{ object.price }} рублей</p>
+			<p><b>Статус товара: </b>{{ object.status }}</p>
+			{% if object.picture %}
+			<img src="{{ object.picture.url }}" alt="Picture"><br/>
+			{% endif %}
+			<hr>
+			<p><b>Дата публикации: </b>{{ object.date_public }}</p>
+		</div>
+	</div>
+{% endblock %}

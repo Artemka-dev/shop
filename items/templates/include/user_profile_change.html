@@ -1,0 +1,23 @@
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Редактировать профиль "{{ request.user|title }}"</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'profile_page' %}" method='post'>
+                    {% csrf_token %}
+                    {% load crispy_forms_tags %}
+
+                    {{ form|crispy }}
+                    
+                    <button type="submit" class='btn btn-outline-dark'>Сохранить изменения</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+{% extends 'items/base_app.html' %}
+
+{% block title %}
+Main page
+{% endblock %}
+
+{% block content %}
+
+	{% load static %}
+
+	<div class="jumbotron" id="jumb__block">
+		<h1 class="display-4">Только у нас товары по низким ценам</h1>
+		<p class="lead">Добро пожаловать в МАГАЗИН.РФ. Мы продаем камеры и экшн-камеры по приемлемым ценам</p>
+		<hr class="my-4">
+		{% if reqeust.user.is_anonymous %}
+			<p>Зарегестрируйтесь на сайте для того чтобы получать скидки и покупать наши товары</p>
+		{% else %}
+			<p>Здравствуйте {{ request.user.username|title }}. Мы очень рады что вы создали свой аккаунт здесь!</p>
+
+		{% endif %}
+		{% if request.user.is_anonymous %}
+			<a class="btn btn-primary btn-lg" href="{% url 'create_account_page' %}" role="button">зарегестрироваться</a>
+		{% endif %}
+	</div>
+
+	{% include "include/kategories.html" %}
+
+	<h2 class="main__text">Хиты продаж на сегоднешний день</h2>
+
+	{% for product in products %}
+
+		{% if product.status == 'хит' %}
+			{% include 'include/detail_product.html' %}
+		{% endif %}
+
+	{% endfor %}
+
+
+	<h2 class="main__text">Также товары по скидке в 20%</h2>
+
+	{% for product in products %}
+
+		{% if product.status == 'цена' %}
+			{% include 'include/detail_product.html' %}
+		{% endif %}
+
+	{% endfor %}
+
+
+
+	{% include 'include/footer.html' %}
+
+
+{% endblock %}
